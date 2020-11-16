@@ -8,8 +8,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.Serializer;
 
-import java.util.Map;
-
 public class TransactionSerializer implements Serializer<Transaction> {
     private final ObjectMapper objectMapper;
 
@@ -28,7 +26,9 @@ public class TransactionSerializer implements Serializer<Transaction> {
         try {
             return objectMapper.writeValueAsBytes(data);
         } catch (JsonProcessingException e) {
-            throw new SerializationException("Error when serializing transaction to byte[] due to parsing problem");
+            throw new SerializationException(
+                "Error occurred while serializing transaction to byte[] due to parsing problem"
+            );
         }
     }
 }

@@ -1,4 +1,4 @@
-package ba.klika.focus.reactive.transactions.transactionsdetails.deserializer;
+package ba.klika.focus.reactive.transactions.transactionsdetails.util;
 
 import ba.klika.focus.reactive.transactions.transactionsdetails.model.Transaction;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,7 +27,9 @@ public class TransactionDeserializer implements Deserializer<Transaction> {
         try {
             return objectMapper.readValue(data, Transaction.class);
         } catch (IOException e) {
-            throw new SerializationException("Error when deserializing byte[] to transaction due to parsing problem");
+            throw new SerializationException(
+                "Error occurred while deserializing byte[] to transaction due to parsing problem"
+            );
         }
     }
 }
