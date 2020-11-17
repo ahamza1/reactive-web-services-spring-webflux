@@ -1,4 +1,4 @@
-package ba.klika.focus.reactive.transactions.transactionsgenerator.serializer;
+package ba.klika.focus.reactive.transactions.transactionsgenerator.util;
 
 import ba.klika.focus.reactive.transactions.transactionsgenerator.model.Transaction;
 import com.fasterxml.jackson.core.JsonProcessingException;
