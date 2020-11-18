@@ -1,18 +1,18 @@
-package ba.klika.focus.reactive.transactions.transactionsdetails.connector.accountdetails;
+package ba.klika.focus.reactive.transactions.transactionsdetails.service;
 
-import ba.klika.focus.reactive.transactions.transactionsdetails.connector.accountdetails.model.Account;
 import ba.klika.focus.reactive.transactions.transactionsdetails.exception.AccountNotFoundException;
+import ba.klika.focus.reactive.transactions.transactionsdetails.model.Account;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class AccountDetailsConnector {
+public class AccountDetailsConnectorService {
     private final WebClient webClient;
 
     @Value("${connector.account-details.url}")

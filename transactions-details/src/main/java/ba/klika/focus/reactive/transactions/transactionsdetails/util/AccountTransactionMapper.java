@@ -1,5 +1,7 @@
-package ba.klika.focus.reactive.transactions.transactionsdetails.model;
+package ba.klika.focus.reactive.transactions.transactionsdetails.util;
 
+import ba.klika.focus.reactive.transactions.transactionsdetails.model.AccountTransaction;
+import ba.klika.focus.reactive.transactions.transactionsdetails.model.Transaction;
 import org.springframework.stereotype.Component;
 
 @Component
