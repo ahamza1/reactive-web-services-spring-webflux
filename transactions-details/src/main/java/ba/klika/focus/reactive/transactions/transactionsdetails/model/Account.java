@@ -1,4 +1,4 @@
-package ba.klika.focus.reactive.transactions.transactionsdetails.connector.accountdetails.model;
+package ba.klika.focus.reactive.transactions.transactionsdetails.model;
 
 import lombok.Data;
 
