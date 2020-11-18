@@ -1,7 +1,7 @@
 kafka:
   bootstrap-servers: localhost:9092
   group-id: transactions-details
-  topic: transactions-generator-demo
+  topic: transactions-generator
 
 connector:
   account-details:

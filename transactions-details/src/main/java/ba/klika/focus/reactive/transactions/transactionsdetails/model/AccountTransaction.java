@@ -1,12 +1,12 @@
 package ba.klika.focus.reactive.transactions.transactionsdetails.model;
 
-import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.UUID;
-
 import ba.klika.focus.reactive.transactions.transactionsdetails.connector.accountdetails.model.Account;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.UUID;
 
 @Data
 @Accessors(chain = true)

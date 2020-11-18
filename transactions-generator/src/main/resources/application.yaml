@@ -4,4 +4,4 @@ server:
 kafka:
   bootstrap-servers: localhost:9092
   client-id: transactions-generator
-  topic: transactions-generator-demo
+  topic: transactions-generator
