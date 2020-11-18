@@ -4,12 +4,12 @@ import ba.klika.focus.reactive.transactions.transactionsdetails.exception.Accoun
 import ba.klika.focus.reactive.transactions.transactionsdetails.model.Account;
 import ba.klika.focus.reactive.transactions.transactionsdetails.service.IAccountDetailsService;
 import lombok.RequiredArgsConstructor;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
@@ -22,14 +22,14 @@ public class AccountDetailsService implements IAccountDetailsService {
 
     public Flux<Account> getAllAccounts() {
         return webClient.get().uri(accountDetailsUrl + "/accounts")
-            .accept(MediaType.APPLICATION_JSON)
-            .retrieve().bodyToFlux(Account.class);
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve().bodyToFlux(Account.class);
     }
 
     public Mono<Account> getAccount(String iban) {
         return webClient.get().uri(accountDetailsUrl + "/accounts/{iban}", iban)
-            .accept(MediaType.APPLICATION_JSON)
-            .retrieve().bodyToMono(Account.class)
-            .switchIfEmpty(Mono.error(new AccountNotFoundException(iban)));
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve().bodyToMono(Account.class)
+                .switchIfEmpty(Mono.error(new AccountNotFoundException(iban)));
     }
 }

@@ -14,8 +14,8 @@ public class TransactionDeserializer implements Deserializer<Transaction> {
 
     public TransactionDeserializer() {
         this.objectMapper = new ObjectMapper()
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .registerModule(new JavaTimeModule());
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .registerModule(new JavaTimeModule());
     }
 
     @Override
@@ -28,8 +28,7 @@ public class TransactionDeserializer implements Deserializer<Transaction> {
             return objectMapper.readValue(data, Transaction.class);
         } catch (IOException e) {
             throw new SerializationException(
-                "Error occurred while deserializing byte[] to transaction due to parsing problem"
-            );
+                    "Error occurred while deserializing byte[] to transaction due to parsing problem");
         }
     }
 }

@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class KafkaConfig {
+
     @Value("${kafka.bootstrap-servers}")
     private String bootstrapServers;
 
@@ -26,6 +27,7 @@ public class KafkaConfig {
 
     @Value("${kafka.topic}")
     private String topic;
+
 
     @Bean
     public KafkaReceiver<String, Transaction> kafkaReceiver() {
@@ -38,8 +40,8 @@ public class KafkaConfig {
         ReceiverOptions<String, Transaction> receiverOptions = ReceiverOptions.create(properties);
 
         return new DefaultKafkaReceiver<>(
-            ConsumerFactory.INSTANCE,
-            receiverOptions.subscription(Collections.singleton(topic))
+                ConsumerFactory.INSTANCE,
+                receiverOptions.subscription(Collections.singleton(topic))
         );
     }
 }
