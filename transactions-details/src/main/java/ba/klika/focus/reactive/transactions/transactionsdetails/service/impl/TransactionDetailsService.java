@@ -20,13 +20,13 @@ public class TransactionDetailsService implements ITransactionDetailsService {
     private final IAccountDetailsService accountDetailsService;
 
     @Override
-    public Flux<TransactionDetails> getTransactionsDetails() {
+    public Flux<TransactionDetails> getAllTransactionsWithAccountDetails() {
         return kafkaReceiverService.getTransactions()
-            .flatMap(this::getTransactionsDetails)
+            .flatMap(this::getTransactionDetails)
             .doOnNext(this::logTransactionDetails);
     }
 
-    private Mono<TransactionDetails> getTransactionsDetails(Transaction transaction) {
+    private Mono<TransactionDetails> getTransactionDetails(Transaction transaction) {
         return Mono.zip(
             accountDetailsService.getAccount(transaction.getSource()),
             accountDetailsService.getAccount(transaction.getDestination()),

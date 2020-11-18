@@ -4,5 +4,5 @@ import ba.klika.focus.reactive.transactions.transactionsdetails.model.Transactio
 import reactor.core.publisher.Flux;
 
 public interface ITransactionDetailsService {
-    Flux<TransactionDetails> getTransactionsDetails();
+    Flux<TransactionDetails> getAllTransactionsWithAccountDetails();
 }

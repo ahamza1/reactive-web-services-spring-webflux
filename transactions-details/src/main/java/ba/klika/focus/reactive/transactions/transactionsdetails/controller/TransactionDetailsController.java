@@ -14,7 +14,7 @@ public class TransactionDetailsController {
     private final ITransactionDetailsService transactionDetailsService;
 
     @GetMapping(value = "/accounts/transactions", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<TransactionDetails> getTransactionDetails() {
-        return transactionDetailsService.getTransactionsDetails();
+    public Flux<TransactionDetails> getAllTransactionsWithAccountDetails() {
+        return transactionDetailsService.getAllTransactionsWithAccountDetails();
     }
 }
