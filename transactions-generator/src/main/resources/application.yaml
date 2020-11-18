@@ -5,3 +5,7 @@ kafka:
   bootstrap-servers: localhost:9092
   client-id: transactions-generator
   topic: transactions-generator
+
+data:
+  source:
+    path: "data/MOCK_DATA.csv"
