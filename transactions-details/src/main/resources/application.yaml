@@ -2,3 +2,7 @@ kafka:
   bootstrap-servers: localhost:9092
   group-id: transactions-details
   topic: transactions-generator-demo
+
+connector:
+  account-details:
+    url: "http://localhost:8082"
