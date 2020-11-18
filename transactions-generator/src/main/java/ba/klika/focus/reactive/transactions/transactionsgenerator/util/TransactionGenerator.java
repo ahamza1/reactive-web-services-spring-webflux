@@ -22,15 +22,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TransactionGenerator {
+    private static final String DATA_SOURCE = "data/MOCK_DATA.csv";
     private static final Random random = new Random();
     private static final int FLUX_INTERVAL_MS = 1500;
     private static final long MIN_AMOUNT = 100;
     private static final long MAX_AMOUNT = 5000;
 
     private final List<String> ibanList;
-
-    @Value("${data.source.path}")
-    private String dataSource;
 
     public TransactionGenerator() throws IOException {
         this.ibanList = getIbanListFromCsv();
@@ -63,7 +61,7 @@ public class TransactionGenerator {
     }
 
     private List<String> getIbanListFromCsv() throws IOException {
-        Resource sourceCsv = new ClassPathResource(dataSource);
+        Resource sourceCsv = new ClassPathResource(DATA_SOURCE);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(sourceCsv.getInputStream()));
 
         return bufferedReader.lines().skip(1)
