@@ -1,4 +1,4 @@
-package ba.klika.focus.reactive.accounts.accountdetails.accountdetails.util;
+package ba.klika.focus.reactive.accounts.accountdetails.accountdetails.database;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import ba.klika.focus.reactive.accounts.accountdetails.accountdetails.database.Account;
-import ba.klika.focus.reactive.accounts.accountdetails.accountdetails.database.IAccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -18,16 +17,18 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class AccountSeeder implements CommandLineRunner {
-    private static final String DATA_SOURCE = "data/MOCK_DATA.csv";
     private static final String CSV_DELIMITER = ",";
     private static final int BLOCKING_DURATION = 30;
 
     private final IAccountRepository accountRepository;
 
+    @Value("${data.source.path}")
+    private String dataSource;
+
 
     @Override
     public void run(String... args) throws Exception {
-        Resource sourceCsv = new ClassPathResource(DATA_SOURCE);
+        Resource sourceCsv = new ClassPathResource(dataSource);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(sourceCsv.getInputStream()));
 
         List<Account> accounts = bufferedReader.lines()

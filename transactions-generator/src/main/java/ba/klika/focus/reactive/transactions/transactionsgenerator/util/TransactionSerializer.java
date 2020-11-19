@@ -13,22 +13,21 @@ public class TransactionSerializer implements Serializer<Transaction> {
 
     public TransactionSerializer() {
         this.objectMapper = new ObjectMapper()
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .registerModule(new JavaTimeModule());
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .registerModule(new JavaTimeModule());
     }
 
     @Override
     public byte[] serialize(String topic, Transaction data) {
         if (data == null) {
-            return null;
+            return new byte[] {};
         }
 
         try {
             return objectMapper.writeValueAsBytes(data);
         } catch (JsonProcessingException e) {
             throw new SerializationException(
-                "Error occurred while serializing transaction to byte[] due to parsing problem"
-            );
+                    "Error occurred while serializing transaction to byte[] due to parsing problem");
         }
     }
 }

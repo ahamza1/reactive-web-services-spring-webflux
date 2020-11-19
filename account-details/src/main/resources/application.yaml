@@ -1,0 +1,6 @@
+server:
+  port: 8082
+
+data:
+  source:
+    path: "data/MOCK_DATA.csv"
