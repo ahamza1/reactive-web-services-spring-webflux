@@ -12,13 +12,12 @@ import reactor.kafka.sender.SenderResult;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class TransactionGeneratorService implements CommandLineRunner {
+public class TransactionsGeneratorService implements ITransactionsGeneratorService {
     private final TransactionGenerator transactionGenerator;
     private final KafkaSender<String, Transaction> kafkaSender;
 
@@ -27,11 +26,11 @@ public class TransactionGeneratorService implements CommandLineRunner {
 
 
     @Override
-    public void run(String... args) {
+    public void initialize() {
         kafkaSender.send(transactionGenerator.getTransactions().map(this::createSenderRecord))
-                .doOnNext(this::processResponse)
-                .doOnError(this::processError)
-                .subscribe();
+            .doOnNext(this::processResponse)
+            .doOnError(this::processError)
+            .subscribe(r -> {});
     }
 
     private SenderRecord<String, Transaction, String> createSenderRecord(Transaction transaction) {
@@ -54,5 +53,4 @@ public class TransactionGeneratorService implements CommandLineRunner {
     private void processError(Throwable throwable) {
         log.error("Record sending failed with exception", throwable);
     }
-
 }

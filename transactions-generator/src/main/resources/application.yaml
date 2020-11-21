@@ -5,3 +5,8 @@ kafka:
   bootstrap-servers: localhost:9092
   client-id: transactions-generator
   topic: transactions-generator
+
+generator:
+  interval-ms: 1500
+  transaction-min-amount: 100
+  transaction-max-amount: 5000
