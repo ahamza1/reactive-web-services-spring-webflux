@@ -36,10 +36,11 @@ public class KafkaConfig {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, TransactionDeserializer.class.getName());
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-
+        
+        ReceiverOptions<String, Transaction> receiverOptions = ReceiverOptions.create(properties);
         return new DefaultKafkaReceiver<>(
                 ConsumerFactory.INSTANCE,
-                ReceiverOptions.create(properties).subscription(Collections.singleton(topic))
+                receiverOptions.subscription(Collections.singleton(topic))
         );
     }
 }
