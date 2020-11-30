@@ -8,12 +8,12 @@ public class TransactionDetailsMapper {
 
     public static TransactionDetails map(Transaction transaction, Account source, Account destination) {
         return new TransactionDetails()
-            .setId(transaction.getId())
-            .setAmount(transaction.getAmount())
-            .setCreatedAt(transaction.getCreatedAt())
-            .setSourceIban(transaction.getSource())
-            .setDestinationIban(transaction.getDestination())
-            .setSourceAccount(source)
-            .setDestinationAccount(destination);
+                .setId(transaction.getId())
+                .setAmount(transaction.getAmount())
+                .setCreatedAt(transaction.getCreatedAt())
+                .setSourceIban(transaction.getSource())
+                .setDestinationIban(transaction.getDestination())
+                .setSourceAccount(source)
+                .setDestinationAccount(destination);
     }
 }

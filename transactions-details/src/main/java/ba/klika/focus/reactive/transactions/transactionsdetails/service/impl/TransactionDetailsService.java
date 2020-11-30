@@ -8,9 +8,9 @@ import ba.klika.focus.reactive.transactions.transactionsdetails.service.ITransac
 import ba.klika.focus.reactive.transactions.transactionsdetails.util.TransactionDetailsMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
@@ -22,15 +22,15 @@ public class TransactionDetailsService implements ITransactionDetailsService {
     @Override
     public Flux<TransactionDetails> getAllTransactionsWithAccountDetails() {
         return kafkaReceiverService.getTransactions()
-            .flatMap(this::getTransactionDetails)
-            .doOnNext(this::logTransactionDetails);
+                .flatMap(this::getTransactionDetails)
+                .doOnNext(this::logTransactionDetails);
     }
 
     private Mono<TransactionDetails> getTransactionDetails(Transaction transaction) {
         return Mono.zip(
-            accountDetailsService.getAccount(transaction.getSource()),
-            accountDetailsService.getAccount(transaction.getDestination()),
-            (source, destination) -> TransactionDetailsMapper.map(transaction, source, destination)
+                accountDetailsService.getAccount(transaction.getSource()),
+                accountDetailsService.getAccount(transaction.getDestination()),
+                (source, destination) -> TransactionDetailsMapper.map(transaction, source, destination)
         );
     }
 

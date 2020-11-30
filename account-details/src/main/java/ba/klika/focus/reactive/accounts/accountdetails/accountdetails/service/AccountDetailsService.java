@@ -1,7 +1,7 @@
-package ba.klika.focus.reactive.accounts.accountdetails.accountdetails;
+package ba.klika.focus.reactive.accounts.accountdetails.accountdetails.service;
 
 import ba.klika.focus.reactive.accounts.accountdetails.accountdetails.database.Account;
-import ba.klika.focus.reactive.accounts.accountdetails.accountdetails.service.AccountsService;
+import ba.klika.focus.reactive.accounts.accountdetails.accountdetails.database.IAccountRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -10,17 +10,15 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AccountDetailsService implements IAccountDetailsService {
-    private final AccountsService accountsService;
+    private final IAccountRepository accountRepository;
 
 
-    @Override
-    public Flux<Account> getAllAccount() {
-        return accountsService.getAccounts();
+    public Flux<Account> getAllAccounts() {
+        return accountRepository.findAll();
     }
 
-    @Override
     public Mono<Account> getAccountByIban(String iban) {
-        return accountsService.getAccountInfo(iban);
+        return accountRepository.findByIban(iban);
     }
 
 }

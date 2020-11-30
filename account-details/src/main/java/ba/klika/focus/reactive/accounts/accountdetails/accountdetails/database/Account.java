@@ -7,11 +7,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
-@Setter
+@Data
 @Document
-@NoArgsConstructor
-@AllArgsConstructor
 public class Account {
 
     @Id
@@ -21,7 +18,6 @@ public class Account {
     private String ownerFirstName;
     private String ownerLastName;
     private String ownerAddress;
-
 
     public Account(String iban, String ownerFirstName, String ownerLastName, String ownerAddress) {
         this.iban = iban;

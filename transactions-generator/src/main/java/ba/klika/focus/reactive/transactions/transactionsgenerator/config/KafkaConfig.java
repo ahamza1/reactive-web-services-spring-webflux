@@ -1,23 +1,23 @@
 package ba.klika.focus.reactive.transactions.transactionsgenerator.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ba.klika.focus.reactive.transactions.transactionsgenerator.model.Transaction;
 import ba.klika.focus.reactive.transactions.transactionsgenerator.util.TransactionSerializer;
-import lombok.Getter;
+import reactor.kafka.sender.KafkaSender;
+import reactor.kafka.sender.SenderOptions;
+import reactor.kafka.sender.internals.DefaultKafkaSender;
+import reactor.kafka.sender.internals.ProducerFactory;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import reactor.kafka.sender.KafkaSender;
-import reactor.kafka.sender.SenderOptions;
-import reactor.kafka.sender.internals.DefaultKafkaSender;
-import reactor.kafka.sender.internals.ProducerFactory;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Configuration
-public class KafkaSenderConfig {
+public class KafkaConfig {
+
     @Value("${kafka.bootstrap-servers}")
     private String bootstrapServers;
 

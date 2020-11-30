@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class KafkaConfig {
+
     @Value("${kafka.bootstrap-servers}")
     private String bootstrapServers;
 
@@ -27,6 +28,7 @@ public class KafkaConfig {
     @Value("${kafka.topic}")
     private String topic;
 
+
     @Bean
     public KafkaReceiver<String, Transaction> kafkaReceiver() {
         Map<String, Object> properties = new HashMap<>();
@@ -34,12 +36,11 @@ public class KafkaConfig {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, TransactionDeserializer.class.getName());
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-
+        
         ReceiverOptions<String, Transaction> receiverOptions = ReceiverOptions.create(properties);
-
         return new DefaultKafkaReceiver<>(
-            ConsumerFactory.INSTANCE,
-            receiverOptions.subscription(Collections.singleton(topic))
+                ConsumerFactory.INSTANCE,
+                receiverOptions.subscription(Collections.singleton(topic))
         );
     }
 }

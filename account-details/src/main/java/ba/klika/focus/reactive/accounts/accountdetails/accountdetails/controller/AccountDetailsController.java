@@ -1,7 +1,7 @@
 package ba.klika.focus.reactive.accounts.accountdetails.accountdetails.controller;
 
-import ba.klika.focus.reactive.accounts.accountdetails.accountdetails.IAccountDetailsService;
 import ba.klika.focus.reactive.accounts.accountdetails.accountdetails.database.Account;
+import ba.klika.focus.reactive.accounts.accountdetails.accountdetails.service.IAccountDetailsService;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -18,7 +18,7 @@ public class AccountDetailsController {
 
     @GetMapping(path = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<Account> getAllAccount() {
-        return accountDetailsService.getAllAccount();
+        return accountDetailsService.getAllAccounts();
     }
 
     @GetMapping(path = "/accounts/{iban}", produces = MediaType.APPLICATION_JSON_VALUE)
